@@ -29,6 +29,17 @@ plink --vcf $VCF \
       --make-bed \
       --out gwas_input
 
+# Fix .fam phenotype column for GEMMA
+echo "Checking .fam phenotype column:"
+head gwas_input.fam
+
+echo "Fixing .fam phenotype column (replace -9 with 1)..."
+awk '{$6=1; print}' gwas_input.fam > gwas_input.tmp.fam
+mv gwas_input.tmp.fam gwas_input.fam  
+
+# Quick check
+head gwas_input.fam 
+      
 # QC step
 plink --bfile gwas_input --freq --allow-extra-chr --out gwas_input
 plink --bfile gwas_input --missing --allow-extra-chr --out missing_check
