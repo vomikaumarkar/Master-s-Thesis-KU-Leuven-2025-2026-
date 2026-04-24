@@ -26,7 +26,7 @@ echo "========================="
 # Trait 1: EL
 gemma -bfile gwas_input \
       -k $KINSHIP \
-      -pheno $PHENO \
+      -p $PHENO \
       -n 1 \
       -lmm 4 \
       -outdir gemma_results \
@@ -35,7 +35,7 @@ gemma -bfile gwas_input \
 # Trait 2: relMRWS
 gemma -bfile gwas_input \
       -k $KINSHIP \
-      -pheno $PHENO \
+      -p $PHENO \
       -n 2 \
       -lmm 4 \
       -outdir gemma_results \
@@ -44,7 +44,7 @@ gemma -bfile gwas_input \
 # Trait 3: avg_time
 gemma -bfile gwas_input \
       -k $KINSHIP \
-      -pheno $PHENO \
+      -p $PHENO \
       -n 3 \
       -lmm 4 \
       -outdir gemma_results \
