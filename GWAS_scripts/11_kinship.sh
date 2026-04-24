@@ -22,10 +22,10 @@ echo "Start time: $(date)"
 echo "========================="
 
 # Step 1: PLINK GRM
-plink --bfile gwas_input_grm \
+plink --bfile gwas_input \
       --make-grm-bin \
       --allow-extra-chr \
-      --out gwas_input
+      --out gwas_input_grm
 
 # Step 2: GEMMA kinship
 mkdir -p kinship_matrix
