@@ -16,6 +16,7 @@ cd /scratch/leuven/373/vsc37319/GWAS/vcf
 
 PHENO=/scratch/leuven/373/vsc37319/GWAS/phenotype_final.txt
 KINSHIP=kinship_matrix/gwas_input.cXX.txt
+SEX=/scratch/leuven/373/vsc37319/GWAS/covariates_sex.txt
 
 mkdir -p gemma_results
 
@@ -27,6 +28,7 @@ echo "========================="
 gemma -bfile gwas_input \
       -k $KINSHIP \
       -p $PHENO \
+      -c $SEX \
       -n 1 \
       -lmm 4 \
       -outdir gemma_results \
@@ -45,6 +47,7 @@ gemma -bfile gwas_input \
 gemma -bfile gwas_input \
       -k $KINSHIP \
       -p $PHENO \
+      -c $SEX \
       -n 3 \
       -lmm 4 \
       -outdir gemma_results \
