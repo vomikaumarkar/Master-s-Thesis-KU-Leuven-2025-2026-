@@ -24,7 +24,7 @@ echo "========================="
 echo "Running GEMMA GWAS"
 echo "========================="
 
-# Trait 1: EL
+# Trait 1: EL with sex as covariate
 gemma -bfile gwas_input \
       -k $KINSHIP \
       -p $PHENO \
@@ -32,9 +32,28 @@ gemma -bfile gwas_input \
       -n 1 \
       -lmm 4 \
       -outdir gemma_results \
-      -o EL
+      -o EL_sex
 
-# Trait 2: relMRWS
+# Trait 1: EL without sex as covariate
+gemma -bfile gwas_input \
+      -k $KINSHIP \
+      -p $PHENO \
+      -n 1 \
+      -lmm 4 \
+      -outdir gemma_results \
+      -o EL      
+
+# Trait 2: relMRWS with sex as a covariate
+gemma -bfile gwas_input \
+      -k $KINSHIP \
+      -p $PHENO \
+      -c $SEX \
+      -n 2 \
+      -lmm 4 \
+      -outdir gemma_results \
+      -o relMRWS_sex
+
+# Trait 2: relMRWS without sex as a covariate
 gemma -bfile gwas_input \
       -k $KINSHIP \
       -p $PHENO \
@@ -43,7 +62,7 @@ gemma -bfile gwas_input \
       -outdir gemma_results \
       -o relMRWS
 
-# Trait 3: avg_time
+# Trait 3: avg_time with sex as a covariate
 gemma -bfile gwas_input \
       -k $KINSHIP \
       -p $PHENO \
@@ -51,7 +70,35 @@ gemma -bfile gwas_input \
       -n 3 \
       -lmm 4 \
       -outdir gemma_results \
-      -o avg_time
+      -o avg_time_sex
+
+# Trait 3: avg_time without sex as a covariate
+gemma -bfile gwas_input \
+      -k $KINSHIP \
+      -p $PHENO \
+      -n 3 \
+      -lmm 4 \
+      -outdir gemma_results \
+      -o avg_time     
+
+# Trait 4: emerge_count with sex as a covariate
+gemma -bfile gwas_input \
+      -k $KINSHIP \
+      -p $PHENO \
+      -c $SEX \
+      -n 4 \
+      -lmm 4 \
+      -outdir gemma_results \
+      -o emerge_count_sex
+
+# Trait 4: emerge_count without sex as a covariate
+gemma -bfile gwas_input \
+      -k $KINSHIP \
+      -p $PHENO \
+      -n 4 \
+      -lmm 4 \
+      -outdir gemma_results \
+      -o emerge_count
       
 echo "========================="
 echo "GWAS complete"
