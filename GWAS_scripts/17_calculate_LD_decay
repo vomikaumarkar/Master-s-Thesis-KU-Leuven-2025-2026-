@@ -1,0 +1,37 @@
+#!/bin/bash -l
+#SBATCH --cluster=wice
+#SBATCH --partition=batch
+#SBATCH --job-name=ld_decay
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --time=12:00:00
+#SBATCH --account=lp_svbelleghem
+#SBATCH --output=ld_decay.%j.out
+#SBATCH --error=ld_decay.%j.err
+
+set -e
+
+module load PLINK/1.9
+
+cd /scratch/leuven/373/vsc37319/GWAS/vcf
+
+mkdir -p ld_decay
+
+echo "======================="
+echo "Calculating LD decay"
+echo "======================="
+
+plink \
+    --bfile gwas_input \
+    --maf 0.05 \
+    --r2 \
+    --ld-window-kb 500 \
+    --ld-window 99999 \
+    --ld-window-r2 0 \
+    --threads 8 \
+    --out ld_decay/ld_decay
+
+echo "======================="
+echo "LD calculation complete"
+echo "======================="
